@@ -5,9 +5,14 @@ on:
     branches: [ work, main, master ]
   pull_request:
 
+concurrency:
+  group: dart-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  analyze:
+  analyze_test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -15,12 +20,13 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          cache: true
 
       - name: Verify Flutter SDK
         run: flutter --version
