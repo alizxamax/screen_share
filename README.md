@@ -23,13 +23,15 @@ A Flutter app for **low-latency local-network screen sharing** with configurable
 
 ## GitHub build/merge requirements
 
-A GitHub Actions workflow is included at `.github/workflows/flutter_ci.yml` and runs:
+GitHub Actions workflows are included at `.github/workflows/flutter_ci.yml` and `.github/workflows/dart.yml` and run:
 
 - `flutter pub get`
 - `flutter analyze`
 - `flutter test`
 
 This is intended to satisfy protected-branch merge requirements once pushed to GitHub.
+
+This avoids the common CI failure from running `dart pub get` on Flutter projects.
 
 ## Build checklist (FlutLab)
 
