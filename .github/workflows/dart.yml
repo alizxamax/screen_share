@@ -1,41 +1,22 @@
-name: Dart
+name: Flutter CI
 
 on:
   push:
-    branches: [ work, main, master ]
+    branches: [ "main" ]
   pull_request:
-
-concurrency:
-  group: dart-${{ github.ref }}
-  cancel-in-progress: true
+    branches: [ "main" ]
 
 jobs:
-  analyze_test:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "17"
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           channel: stable
-          cache: true
 
-      - name: Verify Flutter SDK
-        run: flutter --version
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Analyze project source
-        run: flutter analyze
-
-      - name: Run tests
-        run: flutter test
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
