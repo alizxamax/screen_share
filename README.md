@@ -20,6 +20,17 @@ A Flutter app for **low-latency local-network screen sharing** with configurable
 2. `resizeMode: crop-and-scale` + aspect ratio is requested for encoder-side framing.
 3. Explicit per-edge crop values are validated and displayed in status so you can confirm the applied profile.
 
+
+## GitHub build/merge requirements
+
+A GitHub Actions workflow is included at `.github/workflows/flutter_ci.yml` and runs:
+
+- `flutter pub get`
+- `flutter analyze`
+- `flutter test`
+
+This is intended to satisfy protected-branch merge requirements once pushed to GitHub.
+
 ## Build checklist (FlutLab)
 
 1. Import this repository into FlutLab GitHub project.
