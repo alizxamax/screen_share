@@ -23,7 +23,7 @@ A Flutter app for **low-latency local-network screen sharing** with configurable
 
 ## GitHub build/merge requirements
 
-A GitHub Actions workflow is included at `.github/workflows/dart.yml` and runs:
+A GitHub Actions workflow is included at `.github/workflows/dart.yml` (runs on `main`/`master`/`work` pushes and all pull requests) and runs:
 
 - `flutter pub get`
 - `flutter analyze`
