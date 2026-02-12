@@ -1,16 +1,37 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
 
 android {
     namespace "com.example.screen_share"
     compileSdkVersion 34
-
+    
     defaultConfig {
         applicationId "com.example.screen_share"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true // برای پکیج‌های بزرگ مثل WebRTC لازمه
     }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+dependencies {
 }
