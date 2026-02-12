@@ -1,16 +1,3 @@
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    flutterRoot = System.getenv('FLUTTER_ROOT')
-}
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -21,10 +8,11 @@ android {
 
     defaultConfig {
         applicationId "com.example.lan_screen_share"
-        minSdkVersion 21
+        minSdk 21
         targetSdk 35
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -35,8 +23,10 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-}
 
-flutter {
-    source '../..'
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
 }
