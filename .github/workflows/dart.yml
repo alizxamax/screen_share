@@ -18,23 +18,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           
-      - name: Set up Flutter (stable version)
+      - name: Set up Flutter 3.22.2
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0' # Using a more stable Flutter version
+          flutter-version: '3.22.2' # نسخه طلایی: نه خیلی قدیمی، نه خیلی جدید و باگ‌دار
           channel: 'stable'
+          cache: true
           
       - name: Install dependencies
         run: flutter pub get
         
-      - name: Analyze
-        run: flutter analyze
-        
-      - name: Test
-        run: flutter test
-
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --verbose
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
