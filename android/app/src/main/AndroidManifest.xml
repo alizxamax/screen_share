@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.screen_share">
 
-    <!-- پرمیشن‌های مورد نیاز برای شبکه و اسکرین‌شر -->
     <uses-feature android:name="android.hardware.microphone" android:required="false" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,11 +16,6 @@
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         
-        <!-- برای حل مشکل v1 embedding این تگ باید اینجا باشد -->
-        <meta-data
-            android:name="flutterEmbedding"
-            android:value="2" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -31,6 +25,11 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
             
+            <!-- این خط جادویی که باید حتما اینجا باشه -->
+            <meta-data
+                android:name="flutterEmbedding"
+                android:value="2" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
