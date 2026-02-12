@@ -279,7 +279,7 @@ class _SettingsPanel extends StatelessWidget {
           ),
           const _SectionTitle('Aspect ratio preset'),
           DropdownButtonFormField<AspectPreset>(
-            initialValue: settings.aspectPreset,
+            value: settings.aspectPreset,
             decoration: const InputDecoration(border: OutlineInputBorder()),
             items: AspectPreset.presets
                 .map((preset) => DropdownMenuItem(value: preset, child: Text(preset.label)))
